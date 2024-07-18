@@ -58,6 +58,8 @@ export class EstudiantesService {
                 break;
             }
         }
-        this.estudiantes.splice(identificador, 1);
+        if(identificador != -1){
+            this.estudiantes.splice(identificador, 1);
+        }
     }
 }
