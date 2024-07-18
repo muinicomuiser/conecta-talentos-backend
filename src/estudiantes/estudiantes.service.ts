@@ -8,13 +8,15 @@ export class EstudiantesService {
      * Agrega un estudiante al conjunto de registros
      */
     crearEstudiante(estudiante: Estudiante): void{
-        if(this.estudiantes.length > 0){
-            estudiante.id = this.estudiantes[this.estudiantes.length - 1].id + 1
+        if(!this.compararEmails(estudiante)){
+            if(this.estudiantes.length > 0){
+                estudiante.id = this.estudiantes[this.estudiantes.length - 1].id + 1
+            }
+            else{
+                estudiante.id = 1
+            }
+            this.estudiantes.push(estudiante);
         }
-        else{
-            estudiante.id = 1
-        }
-        this.estudiantes.push(estudiante);
     }
     /**
      * Retorna el conjunto de registros de estudiantes
