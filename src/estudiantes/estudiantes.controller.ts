@@ -3,18 +3,18 @@ import { Estudiante } from 'src/models/estudiante';
 import { EstudiantesService } from './estudiantes.service';
 @Controller('estudiantes')
 export class EstudiantesController {
-    constructor(private readonly serivicio: EstudiantesService){}
+    constructor(private readonly servicio: EstudiantesService){}
     @Get()
     obtenerEstudiantes(): Estudiante[]{
-        return this.serivicio.obtenerConjuntoEstudiantes();
+        return this.servicio.obtenerConjuntoEstudiantes();
     }
     @Get(':id')
     obtenerPorId(@Param('id') id: number): Estudiante{
-        return this.serivicio.obtenerPorId(id);
+        return this.servicio.obtenerPorId(id);
     }
     @Post()
     crearEstudiante(@Body() estudiante: Estudiante): void{
-        this.serivicio.crearEstudiante(estudiante);
+        this.servicio.crearEstudiante(estudiante);
     }
     @Delete(':id')
     eliminarPorId(@Param('id') id: number): void{
