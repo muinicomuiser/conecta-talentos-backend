@@ -3,7 +3,7 @@ import { Estudiante } from 'src/models/estudiante';
 
 @Injectable()
 export class EstudiantesService {
-    private estudiantes: Estudiante[];
+    private estudiantes: Estudiante[] = [];
     /**
      * Agrega un estudiante al conjunto de registros
      */
@@ -52,10 +52,10 @@ export class EstudiantesService {
      */
     eliminarPorId(id: number): void{
         let identificador: number = -1;
-        for(let i in this.estudiantes){
+        
+        for(let i: number = 0; i < this.estudiantes.length; i++){
             if(this.estudiantes[i].id == id){
-                identificador = id;
-                break;
+                identificador = i;
             }
         }
         if(identificador != -1){
