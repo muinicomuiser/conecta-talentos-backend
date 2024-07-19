@@ -18,6 +18,6 @@ export class EstudiantesController {
     }
     @Delete(':id')
     eliminarPorId(@Param('id') id: number): void{
-        this.eliminarPorId(id);
+        this.servicio.eliminarPorId(id);
     }
 }
