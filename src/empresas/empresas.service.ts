@@ -3,7 +3,7 @@ import { Empresa } from 'src/models/empresa';
 
 @Injectable()
 export class EmpresasService {
-    private empresas: Empresa[];
+    private empresas: Empresa[] = [];
     crearEmpresa(empresa: Empresa): void{
         if(!this.compararNombres(empresa)){
             if(this.empresas.length > 0){
@@ -37,8 +37,15 @@ export class EmpresasService {
             this.empresas.splice(identificador, 1);
         }
     }
-    //Retorna true si el nombre de la empresa ingresada ya fue registrado
-    compararNombres(empresa: Empresa): boolean{
+    /**
+     * Retorna true si el nombre de la empresa ingresada ya fue registrado
+     */
+    compararNombres(empresaIngresada: Empresa): boolean{
+        for(let empresaRegistrada of this.empresas){
+            if(empresaIngresada.nombre == empresaRegistrada.nombre){
+                return true;
+            }
+        }
         return false;
     }
 }
