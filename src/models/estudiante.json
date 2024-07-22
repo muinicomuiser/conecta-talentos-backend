@@ -1,0 +1,8 @@
+{
+    "id": 11,
+    "nombre": "string",
+    "apellidos": "string",
+    "edad": 11,
+    "profesion": "string",
+    "email": "string"
+}

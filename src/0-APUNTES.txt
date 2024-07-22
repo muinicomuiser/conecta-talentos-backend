@@ -1,0 +1,3 @@
+Supuestos:
+    1. Al eliminar una empresa, debería también eliminar todas las ofertas asociadas a esa empresa
+    2. Al filtrar ofertas por empresa y estado, debería buscar las empresas según su nombre

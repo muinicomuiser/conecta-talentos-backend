@@ -31,4 +31,7 @@ export class OfertaLaboral{
         this.empresa = empresa;
         this.postulaciones = postulaciones;
     }
+    getEmpresa(): Empresa{
+        return this.empresa;
+    }
 }

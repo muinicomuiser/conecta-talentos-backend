@@ -7,10 +7,11 @@ import { PostulacionesController } from './postulaciones/postulaciones.controlle
 import { OfertasLaboralesController } from './ofertas-laborales/ofertas-laborales.controller';
 import { EstudiantesService } from './estudiantes/estudiantes.service';
 import { EmpresasService } from './empresas/empresas.service';
+import { OfertasLaboralesService } from './ofertas-laborales/ofertas-laborales.service';
 
 @Module({
   imports: [],
   controllers: [AppController, EstudiantesController, EmpresasController, PostulacionesController, OfertasLaboralesController],
-  providers: [AppService, EstudiantesService, EmpresasService],
+  providers: [AppService, EstudiantesService, EmpresasService, OfertasLaboralesService],
 })
 export class AppModule {}

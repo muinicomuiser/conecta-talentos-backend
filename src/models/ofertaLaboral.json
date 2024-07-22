@@ -1,0 +1,11 @@
+{
+    "id": 11,
+    "fechaCreación": "2018-01-10T08:14:00",
+    "descripcion": "string",
+    "cargo": "string",
+    "region": "string",
+    "tipo": "string",
+    "estado": true,
+    "empresa": {},
+    "postulaciones": []
+}
