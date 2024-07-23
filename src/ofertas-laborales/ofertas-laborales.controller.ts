@@ -12,7 +12,10 @@ export class OfertasLaboralesController {
      */
     @Post()
     crearOfertaLaboral(@Body() oferta: OfertaLaboral): void{
-        this.servicioEmpresas.crearEmpresa(oferta.getEmpresa());
+        this.servicioEmpresas.crearEmpresa(oferta.empresa);
+        if(oferta.empresa.nombre == this.servicioEmpresas.obtenerConjuntoEmpresas()[this.servicioEmpresas.obtenerConjuntoEmpresas().length - 1].nombre){
+            oferta.empresa.id = this.servicioEmpresas.obtenerConjuntoEmpresas()[this.servicioEmpresas.obtenerConjuntoEmpresas().length - 1].id;
+        }
         this.servicio.crearOfertaLaboral(oferta);
     }
     @Get(':id')
@@ -24,9 +27,7 @@ export class OfertasLaboralesController {
         this.servicio.eliminarPorId(id);
     }
     @Get()
-    obtenerPorEmpresaYEstado(@Query('nombre') nombreEmpresa: string, @Query('estado') estado: boolean): OfertaLaboral[]{
-        return this.servicio.filtrarPorEmpresaYEstado(nombreEmpresa, estado);
+    obtenerPorEmpresaYEstado(@Query('nombre') nombreEmpresa?: string, @Query('estado') estado?: string): OfertaLaboral[]{
+        return this.servicio.filtrar(nombreEmpresa, estado);
     }
-
-
 }

@@ -1,6 +1,6 @@
 // Oferta laboral
 // ● id
-// ● fechaCreación
+// ● fechaCreacion
 // ● descripcion
 // ● cargo
 // ● region
@@ -12,7 +12,7 @@ import { Empresa } from "./empresa";
 import { Postulacion } from "./postulacion";
 export class OfertaLaboral{
     id: number;
-    fechaCreación: Date;
+    fechaCreacion: Date;
     descripcion: string;
     cargo: string;
     region: string;
@@ -20,9 +20,9 @@ export class OfertaLaboral{
     estado: boolean;
     empresa: Empresa;
     postulaciones: Postulacion[];
-    constructor(id: number, fechaCreación: Date, descripcion: string, cargo: string, region: string, tipo: string, estado: boolean, empresa: Empresa, postulaciones: Postulacion[]){
+    constructor(id: number, fechaCreacion: Date, descripcion: string, cargo: string, region: string, tipo: string, estado: boolean, empresa: Empresa, postulaciones: Postulacion[]){
         this.id = id;
-        this.fechaCreación = fechaCreación;
+        this.fechaCreacion = fechaCreacion;
         this.descripcion = descripcion;
         this.cargo = cargo;
         this.region = region;
@@ -30,8 +30,5 @@ export class OfertaLaboral{
         this.estado = estado;
         this.empresa = empresa;
         this.postulaciones = postulaciones;
-    }
-    getEmpresa(): Empresa{
-        return this.empresa;
     }
 }

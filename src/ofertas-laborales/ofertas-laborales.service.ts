@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { OfertaLaboral } from 'src/models/ofertaLaboral';
-import { Empresa } from 'src/models/empresa';
 
 @Injectable()
 export class OfertasLaboralesService {
@@ -9,6 +8,9 @@ export class OfertasLaboralesService {
      * Agrega la oferta laboral ingresada al registro de empresas.
      * Le asigna una id sumando 1 a la id de la última oferta laboral del registro.
      */
+    obtenerOfertas(): OfertaLaboral[]{
+        return this.ofertasLaborales;
+    }
     crearOfertaLaboral(oferta: OfertaLaboral): void{
         if(this.ofertasLaborales.length > 0){
             oferta.id = this.ofertasLaborales[this.ofertasLaborales.length - 1].id + 1 
@@ -42,6 +44,22 @@ export class OfertasLaboralesService {
             this.ofertasLaborales.splice(identificador, 1);
         }
     }
+    filtrar(nombreEmpresa?: string, estado?: string): OfertaLaboral[]{
+        if(nombreEmpresa == undefined && estado == undefined){
+            return this.obtenerOfertas();
+        }
+        else if(estado == undefined){
+            return this.filtrarPorEmpresa(nombreEmpresa);
+        }
+        else if(nombreEmpresa == undefined){
+            let estadoBool: boolean = estado == "true" ? true : false;
+            return this.filtrarPorEstado(estadoBool);
+        }
+        else{
+            let estadoBool: boolean = estado == "true" ? true : false;
+            return this.filtrarPorEmpresaYEstado(nombreEmpresa, estadoBool);
+        }
+    }
     /**
      * Devuelve un arreglo con las ofertas laborales cuya empresa coincida con el nombre ingresado.
      * Si no se define un arreglo de ofertas laborales como argumento, tomará como referencia el registro total de ofertas laborales.
@@ -50,14 +68,14 @@ export class OfertasLaboralesService {
         let coincidencias: OfertaLaboral[] = [];
         if(ofertas){
             for(let oferta of ofertas){
-                if(oferta.getEmpresa().nombre == nombreEmpresa){
+                if(oferta.empresa.nombre == nombreEmpresa){
                     coincidencias.push(oferta);
                 }
             }
         }
         else{
             for(let oferta of this.ofertasLaborales){
-                if(oferta.getEmpresa().nombre == nombreEmpresa){
+                if(oferta.empresa.nombre == nombreEmpresa){
                     coincidencias.push(oferta);
                 }
             }
@@ -70,15 +88,15 @@ export class OfertasLaboralesService {
      */
     filtrarPorEstado(estado: boolean, ofertas?: OfertaLaboral[]): OfertaLaboral[]{
         let coincidencias: OfertaLaboral[] = [];
-        if(ofertas){
-            for(let oferta of ofertas){
+        if(ofertas == undefined){
+            for(let oferta of this.ofertasLaborales){
                 if(oferta.estado == estado){
                     coincidencias.push(oferta);
                 }
             }
         }
         else{
-            for(let oferta of this.ofertasLaborales){
+            for(let oferta of ofertas){
                 if(oferta.estado == estado){
                     coincidencias.push(oferta);
                 }
